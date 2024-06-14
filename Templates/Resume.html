@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushan Poptani's - Resume</title>
+    <!-- <link rel="stylesheet" href="../Style/CSS/style_r.css"> -->
+    <link rel="stylesheet" href="../Style/CSS/Styles_side-bar.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Add any additional CSS or font imports here -->
+</head>
+<body>
+
+    <header>
+        <h1>Resume</h1>
+        <div class="logo-container">
+            <img src="../Style/Images/Untitled (1).png" alt="Logo" id="logo">
+        </div>
+    </header>
+
+    <nav>
+        <a href="Index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="journey.html">Journey</a>
+
+    </nav>
+
+    
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <br><br><br><br><br><br>
+            
+            <a href="#summary" onclick="toggleSidebar()">
+                <i class='bx bxs-message-square-detail'></i>
+                <span class="link_name">Professional Summary</span>
+            </a>
+    
+            <a href="#skills" onclick="toggleSidebar()">
+                <i class='bx bx-code'></i>
+                <span class="link_name">Technical Skills</span>
+            </a>
+    
+            <a href="#experience" onclick="toggleSidebar()">
+                <i class='bx bxs-briefcase'></i>
+                <span class="link_name">Work History</span>
+            </a>
+    
+            <a href="#education" onclick="toggleSidebar()">
+                <i class='bx bxs-book'></i>
+                <span class="link_name">Education</span>
+            </a>
+    
+            <a href="#achievements" onclick="toggleSidebar()">
+                <i class='bx bxs-graduation'></i>
+                <span class="link_name">Achievements</span>
+            </a>
+            
+            <a href="#intrests" onclick="toggleSidebar()">
+                <i class='bx bxs-bulb'></i>
+                <span class="link_name">Interests</span>
+            </a>
+    
+            <a href="#references" onclick="toggleSidebar()">
+                <i class='bx bxs-bookmark'></i>
+                <span class="link_name">References</span>
+            </a>
+        </div>
+
+        <br>
+        <br>
+        <br>
+    
+        <!-- Toggle bar -->
+        <div class="toggle-switch-container">
+            <label class="toggle-switch">
+                <input type="checkbox" id="theme-toggle" onchange="printToggleValue()">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label" id="dark-theme-label" style="display: block;">Dark Theme</span>
+            <span class="toggle-label" id="light-theme-label" style="display: none;">Light Theme</span>
+        </div>
+    </div>
+    
+
+    <script>
+
+        function getCookie(name) {
+            var cookieName = name + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
+        var toggleSwitch = document.getElementById("theme-toggle");
+        var themeCookie = getCookie("theme"); // Get the theme cookie value
+        console.log(themeCookie)
+        if (themeCookie) {
+            toggleSwitch.checked = themeCookie === "Light"; // Set toggle switch based on cookie
+            printToggleValue()
+        }
+        
+
+        
+        function printToggleValue() {
+            var toggleSwitch = document.getElementById("theme-toggle");
+            
+            var toggleValue = toggleSwitch.checked ? "Light" : "Dark";
+
+            if (toggleValue === "Light") {
+                // Switch to light theme
+                document.body.classList.add("light-theme");
+                document.body.classList.remove("dark-theme");
+                document.getElementById("dark-theme-label").style.display = "none";
+                document.getElementById("light-theme-label").style.display = "block";
+            } else {
+                // Switch to dark theme
+                document.body.classList.add("dark-theme");
+                document.body.classList.remove("light-theme");
+                document.getElementById("light-theme-label").style.display = "none";
+                document.getElementById("dark-theme-label").style.display = "block";
+            }
+
+            // Set a cookie to store the theme preference
+            document.cookie = "theme=" + toggleValue + "; path=/";
+
+            // console.log("Toggle switch value:", toggleValue);
+        }
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script>
+        // Function to toggle sidebar visibility and adjust elements' positions
+        function toggleSidebar() {
+            // Check if the screen width is less than or equal to 1000px
+            if (window.innerWidth <= 1000) {
+                var sidebar = document.getElementById("sidebar");
+                var logoContainer = document.querySelector(".logo-container");
+                var logo = document.getElementById("logo");
+                var mainContent = document.querySelector(".main-content");
+                var nav = document.querySelector("nav");
+                var header = document.querySelector("header");
+                var footer = document.querySelector("footer");
+
+                if (sidebar.style.left === "0px") {
+                    sidebar.style.left = "-100%"; // Adjusted to make sidebar fully off-screen
+                    logoContainer.style.position = "absolute";
+                    mainContent.style.marginLeft = "0px";
+                    nav.style.marginLeft = "0px";
+                    header.style.marginLeft = "0px";
+                    footer.style.marginLeft = "0px";
+                } else {
+                    sidebar.style.left = "0px";
+                    logoContainer.style.position = "fixed";
+                    mainContent.style.marginLeft = "250px"; // Adjust this value according to the width of your sidebar
+                    nav.style.marginLeft = "250px"; // Adjust this value according to the width of your sidebar
+                    header.style.marginLeft = "250px"; // Adjust this value according to the width of your sidebar
+                    footer.style.marginLeft = "250px"; // Adjust this value according to the width of your sidebar
+                }
+            }
+        }
+    
+        // Add click event listener to logo to toggle sidebar
+        document.getElementById("logo").addEventListener("click", toggleSidebar);
+    
+        // Add click event listener to document body to close sidebar when clicked outside
+        document.body.addEventListener("click", function(event) {
+            var sidebar = document.getElementById("sidebar");
+            var logoContainer = document.querySelector(".logo-container");
+            var logo = document.getElementById("logo");
+            var mainContent = document.querySelector(".main-content");
+            var nav = document.querySelector("nav");
+            var header = document.querySelector("header");
+            var footer = document.querySelector("footer");
+    
+            // Check if the screen width is less than or equal to 1000px and the clicked element is not the sidebar or the logo
+            if (window.innerWidth <= 1000 && !sidebar.contains(event.target) && !logo.contains(event.target)) {
+                sidebar.style.left = "-100%"; // Adjusted to make sidebar fully off-screen
+                logoContainer.style.position = "absolute";
+                mainContent.style.marginLeft = "0px";
+                nav.style.marginLeft = "0px";
+                header.style.marginLeft = "0px";
+                footer.style.marginLeft = "0px";
+            }
+        });
+    </script>
+    
+
+    
+    
+    
+    
+    
+
+    <div class="main-content">
+
+        <section id="summary" class="section">
+            <div class="profile-text">
+                <h2>Summary</h2>
+                <p>Khushan Poptani is a dynamic full-stack web developer and data scientist passionate about crafting cutting-edge data analysis tools and robust website and software solutions. With a solid foundation in Python, Django, MySQL, and many other technologies, Khushan brings expertise to every project. His ability to seamlessly integrate back-end and front-end technologies ensures the development of highly functional and user-friendly applications. With a keen eye for detail and a commitment to excellence, Khushan consistently delivers innovative solutions that exceed expectations and drive results. For more details, check About me.</p>
+            </div>
+        </section>
+        <br>
+
+        <section id="skills" class="section">
+            <div class="profile-text">
+                <h2>Skills</h2>
+                <ul>
+                    <p><li><strong>Python:</strong> Used for backend development, data analysis, and scripting.</li></p>
+                    <p><li><strong>Java:</strong> Employed for building robust backend systems and Android applications.</li></p>
+                    <p><li><strong>HTML/CSS:</strong> Utilized for front-end development, creating the structure and styling of web pages.</li></p>
+                    <p><li><strong>PHP:</strong> Employed for server-side scripting and dynamic web page generation.</li></p>
+                    <p><li><strong>JavaScript:</strong> Used for front-end development and adding interactivity to web pages.</li></p>
+                    <p><li><strong>MySQL:</strong> Utilized for database management, storing and retrieving structured data.</li></p>
+                    <p><li><strong>Django:</strong> Framework for building web applications using Python, facilitating rapid development and scalability.</li></p>
+                    <p><li><strong>MongoDB:</strong> Employed for NoSQL database management, particularly suited for handling unstructured data.</li></p>
+                    <p><li><strong>Oracle:</strong> Utilized for enterprise-level database management and application development.</li></p>
+                    <p><li><strong>C:</strong> Used for system programming, embedded systems, and developing performance-critical applications.</li></p>
+                    <p><li><strong>C++:</strong> Employed for developing system/software, game development, real-time simulation, and performance-intensive applications.</li></p>
+                </ul>
+            </div>
+        </section>
+        
+        
+
+        <br>
+
+        <section id="experience" class="section">
+            <div class="profile-text">
+                <h2>Work History</h2>
+                <ul>
+                    <p>
+                        <li>
+                            <strong>Python Programmer | CodSoft | Nov 2023 – Dec 2023</strong><br>
+                            <p>I have been working as a Python developer in CodSoft to design good codes.</p>
+                            <p><strong>Skills:</strong> Python, DSA (Data Structure and Algorithm)</p>
+                            <p>Projects:
+                                <ul>
+                                    <li>GUI Calculator (to perform simple tasks)</li>
+                                    <li>Contact Book (Store, Add, Delete, and Update contacts)</li>
+                                    <li>Password Generator (Generate a random and strong password)</li>
+                                    <li>To-Do List (Save all the task and data in a file)</li>
+                                </ul>
+                            </p>
+                        </li>
+                    </p>
+                    <br>
+                    <p>
+                        <li>
+                            <strong>Python Programmer | Prodigy InfoTech | Feb 2024 – Mar 2024</strong><br>
+                            <p>I have been working as a Cyber Security Python developer in Prodigy InfoTech to develop code to hide data and protect data.</p>
+                            <p><strong>Skills:</strong> Python, DSA (Data Structure and Algorithm)</p>
+                            <p>Projects:
+                                <ul>
+                                    <li>Image Encryption (Encrypt and Decrypt Images)</li>
+                                    <li>Keylogger (Log the user pressed keys and save it in the text file or send it through mail)</li>
+                                    <li>Network Packet Analyzer (Opens and reads the packets transferred through the network and finds the IP address and MAC address)</li>
+                                    <li>Caesar and Cipher (Basic simple text encryption method)</li>
+                                </ul>
+                            </p>
+                        </li>
+                    </p>
+                    <br>
+                    <p>
+                        <li>
+                            <strong>Web Developer | Inditech | Apr 2024 – Oct 2024</strong><br>
+                            Inditech<br>
+                            <p>I have been working as a Web developer in Inditech to develop dynamic web pages.</p>
+                            <p><strong>Skills:</strong> PHP, HTML, CSS, API, MySQL</p>
+                            <p>Projects:
+                                <ul>
+                                    <li>Create forms for users to fill</li>
+                                    <li>Design web pages</li>
+                                    <li>Send automated WhatsApp messages using API</li>
+                                    <li>Creating API and using API of different platforms</li>
+                                </ul>
+                            </p>
+                        </li>
+                    </p>
+                </ul>
+            </div>
+        </section>
+        
+        <br>
+
+        <section id="education" class="section">
+            <div class="profile-text">
+                <h2>Education</h2>
+                <ul>
+                    <p><li><strong>Babu Banarasi Das University – Lucknow, Uttar Pradesh | Aug 2023 – Jul 2027</strong><br>Bachelor of Engineering in Computer Science (Cloud Computing and Machine Learning)</li></p>
+                    <p><li><strong>SMT Vidhya Mandir - Agra, Lucknow | Feb 2022 - Mar 2023</strong><br>12th class</li></p>
+                    <p><li><strong>Prelude Public School - Agra, Uttar Pradesh | Feb 2020 - Mar 2021</strong><br>10th class</li></p>
+                </ul>
+            </div>
+        </section>
+        <br>
+
+        <section id="achievements" class="section">
+            <div class="profile-text">
+                <h2>Achievements</h2>
+                <ul>
+                    <p><li><strong>8.9 CGPA in the first year</strong></li></p>
+                    <p><li><strong>Top 5 finish in a hackathon with a team</strong></li></p>
+                    <p><li><strong>Secured first paid internship in the first year</strong></li></p>
+                </ul>
+            </div>
+        </section>
+        
+        
+        <br>
+
+        <section id="interests" class="section">
+            <div class="profile-text">
+                <h2>Interests</h2>
+                <ul>
+                    <p><li><strong>Travelling</strong></li></p>
+                    <p><li><strong>Listening to music</strong></li></p>
+                    <p><li><strong>Cricket</strong></li></p>
+                </ul>
+            </div>
+        </section>
+        
+        <br>
+
+        <section id="references" class="section">
+            <div class="profile-text">
+                <h2>References</h2>
+                <p>No references needed</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Khushan Poptani's Career Odyssey!</p>
+            <div class="social-media">
+                <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+            </div>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:poptanikhushan@gmail.com">poptanikhushan@gmail.com</a></p>
+                <p>Phone: +91 9084712373</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
